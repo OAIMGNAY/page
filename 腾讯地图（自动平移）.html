@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>地图自动平移</title>
+<style type="text/css">
+*{
+    margin:0px;
+    padding:0px;
+}
+body, button, input, select, textarea {
+    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+}
+p{
+    width:603px;
+    padding-top:3px;
+    overflow:hidden;
+}
+.btn{
+    width:142px;
+}
+</style>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+<script>
+var init = function() {
+    var map = new qq.maps.Map(document.getElementById('container'),{
+        center: new qq.maps.LatLng(39.916527,116.397128),
+        zoom: 16
+    });
+    var times = 0;     //设置时间
+    //启动定时器函数  时间设置为2秒
+    var oInterval  = setInterval(function(){
+        map.panBy(-1, 1);       //将地图中心像横坐标移动-1像素单位  纵坐标移动1像素单位
+        times++;                    //计数器自加
+        if (times >= 1000){         //判断计数器自加是否达到数值
+            clearInterval(oInterval)   //条件成立清空计数器
+        }
+    },2);
+}
+</script>
+</head>
+<body onload="init()">
+<div style="width:603px;height:300px" id="container"></div>
+<p>每隔2毫秒钟地图会向东北方向平移1像素。</p>
+</body>
+</html>
+
+
+
+
+
+<!-- 删除 click-icon 添加marker-icon-->
+var marker = new qq.maps.Marker({
+        map: map,
+        position:map.getCenter()
+    });
+marker.setIcon(markerIcon);
+
+
+<!-- 添加click-icon 删除marker-icon-->
+var marker = new qq.maps.Marker({
+        map: map,
+        position:latlngs[num]
+    });
+marker.setIcon(iconClick);
+

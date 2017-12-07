@@ -1,0 +1,293 @@
+$(this).hide() - 隐藏当前元素
+$("p").hide() - 隐藏所有段落
+$(".test").hide() - 隐藏所有 class="test" 的所有元素
+$("#test").hide() - 隐藏所有 id="test" 的元素
+
+
+jQuery 元素选择器
+jQuery 使用 CSS 选择器来选取 HTML 元素。
+$("p") 选取 <p> 元素。
+$("p.intro") 选取所有 class="intro" 的 <p> 元素。
+$("p#demo") 选取所有 id="demo" 的 <p> 元素。
+
+
+jQuery 属性选择器
+jQuery 使用 XPath 表达式来选择带有给定属性的元素。
+$("[href]") 选取所有带有 href 属性的元素。
+$("[href='#']") 选取所有带有 href 值等于 "#" 的元素。
+$("[href!='#']") 选取所有带有 href 值不等于 "#" 的元素。
+$("[href$='.jpg']") 选取所有 href 值以 ".jpg" 结尾的元素。
+
+jQuery CSS 选择器
+$("p").css("background-color","red");
+
+
+
+$(this)	当前 HTML 元素
+$("p")	        	所有 <p> 元素
+$("p.intro")		所有 class="intro" 的 <p> 元素
+$(".intro")		所有 class="intro" 的元素
+$("#intro")		id="intro" 的元素
+$("ul li:first")	每个 <ul> 的第一个 <li> 元素
+$("[href$='.jpg']")	所有带有以 ".jpg" 结尾的属性值的 href 属性
+$("div#intro .head")	id="intro" 的 <div> 元素中的所有 class="head" 的元素
+
+
+jQuery 选择器
+http://www.w3school.com.cn/jquery/jquery_ref_selectors.asp
+
+
+当按钮的点击事件被触发时会调用一个函数
+	$("button").click(function() {..some code... } )
+
+$(document).ready(function)	将函数绑定到文档的就绪事件（当文档完成加载时）
+$(selector).click(function)	触发或将函数绑定到被选元素的  点击事件
+$(selector).dblclick(function)	触发或将函数绑定到被选元素的  双击事件
+$(selector).focus(function)	触发或将函数绑定到被选元素的  获得焦点事件
+$(selector).mouseover(function)	触发或将函数绑定到被选元素的  鼠标悬停事件
+
+
+通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+
+
+
+$(selector).hide(speed,callback);
+可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+
+
+通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。
+
+$(selector).toggle(speed,callback);
+可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+可选的 callback 参数是 toggle() 方法完成后所执行的函数名称。
+
+
+jQuery 效果函数
+	http://www.w3school.com.cn/jquery/jquery_ref_effects.asp
+
+
+
+通过 jQuery，您可以实现元素的淡入淡出效果。
+
+$(selector).fadeIn(speed,callback);  	用于淡入已隐藏的元素。
+	可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+	可选的 callback 参数是 fading 完成后所执行的函数名称。
+	
+$(selector).fadeOut(speed,callback);	用于淡出可见元素。
+	可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+	可选的 callback 参数是 fading 完成后所执行的函数名称。
+
+
+$(selector).fadeToggle(speed,callback);方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换
+	可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+	可选的 callback 参数是 fading 完成后所执行的函数名称。
+
+
+$(selector).fadeTo(speed,opacity,callback);  允许渐变为给定的不透明度（值介于 0 与 1 之间）
+	必需的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+	fadeTo() 方法中必需的 opacity 参数将淡入淡出效果设置为给定的不透明度（值介于 0 与 1 之间）。
+	可选的 callback 参数是该函数完成后所执行的函数名称。
+
+
+向下滑动元素
+$(selector).slideDown(speed,callback);
+
+向上滑动元素。
+$(selector).slideUp(speed,callback);
+
+可以在 slideDown() 与 slideUp() 方法之间进行切换。
+$(selector).slideToggle(speed,callback);
+
+
+
+jQuery 动画 - animate() 方法
+
+$(selector).animate({params},speed,callback);
+	必需的 params 参数定义形成动画的 CSS 属性。
+	可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+	可选的 callback 参数是动画完成后所执行的函数名称。
+
+$("button").click(function(){
+  $("div").animate({left:'250px'});
+});
+
+
+生成动画的过程中可同时使用多个属性：
+$("button").click(function(){
+  $("div").animate({
+    left:'250px',
+    opacity:'0.5',
+    height:'150px',
+    width:'150px'
+  });
+}); 
+
+
+当使用 animate() 时，必须使用 Camel 标记法书写所有的属性名，比如，必须使用 paddingLeft 而不是 padding-left，使用 marginRight 而不是 margin-right，等等。
+
+
+也可以定义相对值（该值相对于元素的当前值）。需要在值的前面加上 += 或 -=：
+$("button").click(function(){
+  $("div").animate({
+    left:'250px',
+    height:'+=150px',
+    width:'+=150px'
+  });
+});
+
+
+甚至可以把属性的动画值设置为 "show"、"hide" 或 "toggle"
+
+
+
+默认地，jQuery 提供针对动画的队列功能。
+这意味着如果您在彼此之后编写多个 animate() 调用，jQuery 会创建包含这些方法调用的“内部”队列。然后逐一（一个动画执行完后再执行下一个动画）运行这些 animate 调用。
+
+$("button").click(function(){
+  var div=$("div");
+  div.animate({height:'300px',opacity:'0.4'},"slow");
+  div.animate({width:'300px',opacity:'0.8'},"slow");
+  div.animate({height:'100px',opacity:'0.4'},"slow");
+  div.animate({width:'100px',opacity:'0.8'},"slow");
+});
+
+把 <div> 元素移动到右边，然后增加文本的字号：
+$("button").click(function(){
+  var div=$("div");
+  div.animate({left:'100px'},"slow");
+  div.animate({fontSize:'3em'},"slow");
+});
+
+
+jQuery stop() 方法用于停止动画或效果，在它们完成之前。
+stop() 方法适用于所有 jQuery 效果函数，包括滑动、淡入淡出和自定义动画。
+
+$(selector).stop(stopAll,goToEnd);
+	可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停止活动的动画，允许任何排入队列的动画向后执行。
+	可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。
+	因此，默认地，stop() 会清除在被选元素上指定的当前动画。
+
+
+
+通过 jQuery，您可以把动作/方法链接起来。
+Chaining 允许我们在一条语句中允许多个 jQuery 方法（在相同的元素上）。
+
+下面的例子把 css(), slideUp(), and slideDown() 链接在一起。"p1" 元素首先会变为红色，然后向上滑动，然后向下滑动：
+	$("#p1").css("color","red").slideUp(2000).slideDown(2000);
+
+
+
+text() - 设置或返回所选元素的文本内容
+html() - 设置或返回所选元素的内容（包括 HTML 标记）
+val() - 设置或返回表单字段的值
+
+
+$("#btn1").click(function(){
+  alert("Text: " + $("#test").text());
+});
+$("#btn2").click(function(){
+  alert("HTML: " + $("#test").html());
+});
+
+
+
+jQuery attr() 方法用于获取属性值。
+$("button").click(function(){
+  alert($("#w3s").attr("href"));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<!-- 
+	设计图 宽 为  width   ;最外层 字体大小为  size
+	则 比率为  size/width
+	则对于任何屏幕，字体大小为   屏幕实际宽度 *  size/width
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字体适应不同屏幕</title>
+	<style type="text/css">
+		html{
+			font-size: 10px;
+		}
+		#contain
+		{	
+			font-size: 40px;
+		}
+		.son{
+			font-size: 0.5em;
+		}
+		.son1{
+			font-size: 0.5em;
+		}
+		.son2{
+			font-size: 1rem;
+		}
+		.son3{
+			font-size: 2rem;
+		}
+		.block1{
+			width: 20px;
+			height: 2em;
+			background: #aaa;
+		}
+		.yuansu{
+			font-size: 40px;
+		}
+	</style>
+
+</head>
+<body >
+	<div id="contain">字体大小
+		<div class="son">二级元素 0.5em
+			<div class="son1">三级元素的 0.5em</div>
+		</div>
+		<div class="son2">二级元素 1rem
+			<div class="son3">三级元素的 2rem</div>
+		</div>
+		<!-- <div class="block1">block</div> -->
+	</div>
+	<hr />
+	<div class="yuansu">40px 的元素</div>
+</body>
+</html>
+<script type="text/javascript">
+	(function() {
+		function resize(){
+			var d = document.documentElement.clientWidth;
+			var wid = d/10+"px";
+			console.log(wid);
+			document.getElementById("contain").style.fontSize= wid;
+		}
+		// resize();
+		window.onresize = function(event) {
+	        resize();
+	    };
+	})()
+</script>
+
+
+	
